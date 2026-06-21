@@ -1,0 +1,60 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Evisort
+providerId: evisort
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Contract Lifecycle Management
+- CLM
+- Contract Intelligence
+- Document AI
+- Legal Tech
+- Plans
+description: >-
+  Evisort does not publish public, self-serve pricing. It is a sales-led
+  enterprise product, now sold as Workday Contract Lifecycle Management, powered
+  by Evisort. Pricing is quote-based and depends on contract volume, number of
+  users, selected modules, integrations, and whether it is bundled with other
+  Workday products. There is no published price list and no free trial. API
+  access is provided to customers; API keys are created in the Evisort UI. None
+  of the pricing values below are reconciled against a public price sheet because
+  no public price sheet exists.
+notes: >-
+  Pricing is obtained only through a sales conversation with Workday / Evisort.
+  Trade-press estimates place the platform at the enterprise end of the market.
+  Reconcile against an actual customer order form if one becomes available.
+sources:
+- https://www.evisort.com
+- https://www.hyperstart.com/blog/evisort-pricing/
+- https://newsroom.workday.com/2024-09-17-Workday-Signs-Definitive-Agreement-to-Acquire-Evisort
+plans:
+- id: evisort-enterprise
+  name: Enterprise (Workday CLM, powered by Evisort)
+  type: enterprise
+  description: >-
+    Quote-based enterprise subscription covering the Evisort contract
+    intelligence and CLM platform and its REST API. Scope and price are
+    negotiated with Workday sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Document Upload and Storage
+  - name: AI Field and Metadata Extraction
+  - name: Contract Search
+  - name: Workflow Automation
+  - name: API and Webhooks Access
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

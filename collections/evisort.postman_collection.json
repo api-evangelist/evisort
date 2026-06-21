@@ -1,0 +1,289 @@
+{
+  "item": [
+    {
+      "id": "a1b2c3d4-0001-4000-8000-000000000001",
+      "name": "Authentication",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1b2c3d4-0002-4000-8000-000000000002",
+          "name": "Generate a JWT token from an Evisort API key.",
+          "request": {
+            "name": "Generate a JWT token from an Evisort API key.",
+            "description": {
+              "content": "Exchanges an Evisort API key for a short-lived JWT bearer token used on subsequent requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "auth",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "EVISORT-API-KEY",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1b2c3d4-0003-4000-8000-000000000003",
+      "name": "Search",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1b2c3d4-0004-4000-8000-000000000004",
+          "name": "Search documents in a workspace.",
+          "request": {
+            "name": "Search documents in a workspace.",
+            "description": {
+              "content": "Searches contracts by type, category, field filters, clauses, and free-text terms.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "50"
+                },
+                {
+                  "key": "includeMapping",
+                  "value": "false"
+                },
+                {
+                  "key": "returnUniqueFieldValues",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1b2c3d4-0005-4000-8000-000000000005",
+      "name": "Documents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1b2c3d4-0006-4000-8000-000000000006",
+          "name": "Upload a document.",
+          "request": {
+            "name": "Upload a document.",
+            "description": {
+              "content": "Uploads a contract or supporting file into Evisort for AI processing, field extraction, and search indexing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a1b2c3d4-0007-4000-8000-000000000007",
+          "name": "Download document content.",
+          "request": {
+            "name": "Download document content.",
+            "description": {
+              "content": "Downloads the file content of a document by its Evisort document ID. Supports ocr and type (pdf|docx) query parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "documents",
+                ":evisortId",
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "ocr",
+                  "value": "false"
+                },
+                {
+                  "key": "type",
+                  "value": "pdf"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "evisortId",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null,
+            "body": {}
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1b2c3d4-0008-4000-8000-000000000008",
+      "name": "Fields",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1b2c3d4-0009-4000-8000-000000000009",
+          "name": "Get extracted fields and metadata for a document.",
+          "request": {
+            "name": "Get extracted fields and metadata for a document.",
+            "description": {
+              "content": "Returns the AI-extracted fields, clauses, and metadata associated with a document. Field definitions are workspace-specific.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "documents",
+                ":evisortId",
+                "fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "evisortId",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null,
+            "body": {}
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.evisort.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a1b2c3d4-0000-4000-8000-000000000000",
+    "name": "Evisort API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Externally-reconstructed Postman collection for the Evisort REST API (now Workday Contract Lifecycle Management, powered by Evisort). Authenticate by POSTing your Evisort API key to /v1/auth/token to obtain a JWT, then set it as the bearer token. The full reference is behind Evisort's authenticated developer portal.\n\nContact: https://developers.evisort.com/",
+      "type": "text/plain"
+    }
+  }
+}

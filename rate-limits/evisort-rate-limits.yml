@@ -1,0 +1,55 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Evisort
+providerId: evisort
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Contract Lifecycle Management
+- CLM
+- Contract Intelligence
+- Document AI
+- Legal Tech
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Evisort's REST API enforces authentication via a short-lived JWT bearer token
+  obtained from an Evisort API key, which implies token-expiry and re-auth
+  behavior. Specific published request-per-minute / request-per-day rate-limit
+  numbers are not available in Evisort's public materials; the detailed API
+  reference is behind an authenticated developer portal. No rate-limit values
+  below are reconciled.
+notes: >-
+  Confirm concrete throttling thresholds, response headers, and the JWT token
+  lifetime against Evisort's authenticated developer documentation during
+  reconciliation. Clients should treat the JWT as short-lived and re-request a
+  token from POST /auth/token when it expires.
+sources:
+- https://developers.evisort.com/
+- https://documents.developers.evisort.com/
+- https://medium.com/@christopher.j.knowles/a-quick-introduction-to-the-evisort-documents-api-in-python-730e173105fa
+responseCodes:
+  throttled: 429
+  unauthorized: 401
+limits:
+- name: Request Rate
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Concrete RPM/RPD thresholds are not publicly documented.
+- name: JWT Token Lifetime
+  scope: account
+  metric: token_ttl
+  limit: see provider documentation
+  notes: Tokens issued by POST /auth/token are short-lived; re-authenticate on expiry.
+policies:
+- name: Token-Based Authentication
+  description: An Evisort API key is exchanged for a short-lived JWT bearer token used on each request.
+- name: Backoff Strategy
+  description: Clients should implement retry with exponential backoff and honor 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

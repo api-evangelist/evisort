@@ -1,0 +1,90 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Evisort
+providerId: evisort
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Contract Lifecycle Management
+- CLM
+- Contract Intelligence
+- Document AI
+- Legal Tech
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Evisort spend. Evisort (now Workday Contract Lifecycle
+  Management, powered by Evisort) is a sales-led enterprise subscription with no
+  public, usage-metered, per-call pricing. Cost is governed by an annual
+  enterprise agreement scoped to contract volume, users, modules, and
+  integrations rather than by API call volume. The meters below are indicative
+  cost-allocation dimensions, not published billable units, and are not
+  reconciled against an invoice.
+notes: >-
+  Because Evisort billing is contract/subscription-based rather than
+  pay-as-you-go, there is no public per-request rate to model. Reconcile against
+  an actual Workday / Evisort order form and invoice if one becomes available.
+sources:
+- https://www.evisort.com
+- https://newsroom.workday.com/2024-09-17-Workday-Signs-Definitive-Agreement-to-Acquire-Evisort
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Workday
+serviceCategory: Management and Governance
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+focusColumns:
+  ServiceName: Workday Contract Lifecycle Management, powered by Evisort
+  ServiceCategory: Management and Governance
+  ProviderName: Evisort
+  PublisherName: Workday
+  InvoiceIssuerName: Workday
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: contract_volume
+  description: Number of contracts under management; a typical enterprise sizing dimension (allocation only, not a published billable unit).
+  unit: contracts
+  aggregation: max
+  dimensions:
+  - account
+  - workspace
+- name: seats
+  description: Licensed users in the workspace (allocation only, not a published billable unit).
+  unit: users
+  aggregation: max
+  dimensions:
+  - account
+  - workspace
+- name: api_requests
+  description: API calls made against the Evisort REST API; useful for internal allocation though not separately metered by the vendor.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - api
+principles:
+- name: Visibility
+  description: Track API key usage per integration to attribute Evisort activity to internal teams, even though billing is subscription-based.
+- name: Allocation
+  description: Map the annual Evisort/Workday subscription cost to the business units consuming contract intelligence and CLM workflows.
+- name: Optimization
+  description: Right-size modules, seats, and contract volume at renewal; consolidate API integrations to reduce operational overhead.
+- name: Accountability
+  description: Assign an owner for the Workday/Evisort agreement and review utilization against the contracted scope annually.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Evisort API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate a JWT token from an Evisort API key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.evisort.com/v1/auth/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exchanges an Evisort API key (sent in the EVISORT-API-KEY header) for a short-lived JWT bearer token used on subsequent requests."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search documents in a workspace.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.evisort.com/v1/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Searches contracts by type, category, field filters, clauses, and free-text terms. Supports page, pageSize, includeMapping, and returnUniqueFieldValues query parameters."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a document.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.evisort.com/v1/documents",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Uploads a contract or supporting file into Evisort for AI processing, field extraction, and search indexing."
+        },
+        {
+          "info": {
+            "name": "Download document content.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.evisort.com/v1/documents/{evisortId}/content"
+          },
+          "docs": "Downloads the file content of a document by its Evisort document ID. Supports ocr and type (pdf|docx) query parameters."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Fields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get extracted fields and metadata for a document.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.evisort.com/v1/documents/{evisortId}/fields"
+          },
+          "docs": "Returns the AI-extracted fields, clauses, and metadata associated with a document. Field definitions are workspace-specific."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

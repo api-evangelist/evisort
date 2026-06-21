@@ -1,0 +1,120 @@
+aid: evisort
+name: Evisort
+review:
+  question: Does Evisort expose a documented public REST API, and what is its current ownership status?
+  answer: true
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  ownershipNote: |
+    Workday signed a definitive agreement to acquire Evisort on 2024-09-17
+    (deal closed in Workday's fiscal Q3 FY2025). Evisort is now sold as
+    "Workday Contract Lifecycle Management, powered by Evisort." The evisort.com
+    domain and developers.evisort.com developer portals remain live as of the
+    review date, and the standalone evisort.com site now redirects much of its
+    content into Workday's CLM / Contract Intelligence offering.
+  apiAvailabilityNote: |
+    Evisort exposes a real, documented REST API at base URL
+    https://api.evisort.com/v1. The public-facing API reference, however, lives
+    behind authenticated developer portals (developers.evisort.com,
+    documents.developers.evisort.com, workflow.developers.evisort.com,
+    admin.developers.evisort.com), which return HTTP 403 to anonymous crawlers.
+    The base URL, the API-key to JWT bearer-token authentication flow, and
+    several endpoints were confirmed from publicly available integration and
+    developer documentation rather than from the gated reference itself.
+findings:
+  summary: |
+    Evisort is an AI contract lifecycle management (CLM) and contract
+    intelligence platform, acquired by Workday in 2024. It offers a documented
+    REST API for documents, field/metadata extraction, search, workflows, and
+    webhooks. Authentication is via an Evisort API key (created in the Evisort
+    UI) exchanged at POST /auth/token for a short-lived JWT bearer token, which
+    is then sent as Authorization: Bearer {token}. The detailed API reference is
+    gated behind an authenticated developer portal, so this catalog entry was
+    reconstructed from public secondary sources and marks unknown
+    pricing/limits as not reconciled. No fabrication was introduced for
+    undocumented schemas.
+  apiProducts:
+    - name: Documents API
+      documented: true
+      note: Upload, retrieve, and download document content (PDF/DOCX, optional OCR).
+    - name: Field and Metadata Extraction API
+      documented: true
+      note: Read/write AI-extracted fields, clauses, and metadata for documents.
+    - name: Workflow API
+      documented: true
+      note: Initiate contract generation/review and manage workflow tickets and ticket documents.
+    - name: Search API
+      documented: true
+      note: Query documents by type, category, fields, clauses, and full text with pagination.
+    - name: Webhooks
+      documented: true
+      note: Subscribe to workspace events; exact event catalog is in the gated portal.
+    - name: Admin API
+      documented: true
+      note: Manage users and admin actions (not modeled as a separate apis.yml entry in this catalog).
+    - name: Audit Logs API
+      documented: true
+      note: Read audit events within a workspace (not modeled as a separate apis.yml entry).
+    - name: Managed Entities API
+      documented: true
+      note: Manage tickets and documents as organized groups (not modeled as a separate apis.yml entry).
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.evisort.com/v1
+      documented: true
+    - protocol: Webhooks
+      scheme: https
+      documented: true
+      note: Outbound event delivery to subscriber endpoints; exact payloads gated.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket surface is documented for Evisort.
+  endpointsConfirmed:
+    - POST https://api.evisort.com/v1/auth/token
+    - POST https://api.evisort.com/v1/search
+    - GET  https://api.evisort.com/v1/documents/{evisortId}/content
+  authentication:
+    scheme: API key exchanged for JWT bearer token
+    apiKeyHeader: EVISORT-API-KEY
+    tokenEndpoint: POST https://api.evisort.com/v1/auth/token
+    bearerHeader: 'Authorization: Bearer {jwt}'
+    note: API keys are created by the user in the Evisort UI / admin console.
+sources:
+  - url: https://developers.evisort.com/
+    type: Documentation
+    note: Primary developer portal; lists Workflow, Documents, Admin, Audit Logs, and Managed Entities APIs. Returns 403 to anonymous fetch.
+  - url: https://documents.developers.evisort.com/metadata
+    type: Documentation
+    note: Documents API / metadata reference. Gated (403) to anonymous fetch.
+  - url: https://workflow.developers.evisort.com/
+    type: Documentation
+    note: Workflow API reference. Gated to anonymous fetch.
+  - url: https://medium.com/@christopher.j.knowles/a-quick-introduction-to-the-evisort-documents-api-in-python-730e173105fa
+    type: Tutorial
+    note: Confirms base URL https://api.evisort.com/v1, the EVISORT-API-KEY to JWT flow, POST /search, and GET /documents/{id}/content.
+  - url: https://docs.celigo.com/hc/en-us/articles/36725556778011-Available-Evisort-APIs
+    type: Documentation
+    note: Third-party integration docs enumerating the available Evisort APIs.
+  - url: https://tray.ai/documentation/connectors/service/evisort
+    type: Documentation
+    note: Connector docs confirming base URL and API-key authentication.
+  - url: https://newsroom.workday.com/2024-09-17-Workday-Signs-Definitive-Agreement-to-Acquire-Evisort
+    type: PressRelease
+    note: Workday's 2024-09-17 announcement of the Evisort acquisition.
+actions:
+  apisYmlCreated: true
+  openapiCreated: true
+  openapiNote: |
+    openapi/evisort-openapi.yml documents the three confirmed endpoints with
+    real parameters plus upload/fields stubs described accurately; gated schemas
+    are marked as such rather than fabricated. Bearer (JWT) security scheme is
+    declared.
+  reconciledFlags: |
+    plans, rate-limits, and finops are marked reconciled: false because Evisort
+    pricing is sales-led (no public price sheet) and concrete rate-limit values
+    are not publicly published.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

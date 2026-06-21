@@ -1,0 +1,120 @@
+aid: evisort
+url: https://raw.githubusercontent.com/api-evangelist/evisort/refs/heads/main/apis.yml
+name: Evisort
+kind: company
+description: Evisort is an AI-powered contract lifecycle management (CLM) and contract
+  intelligence platform that lets teams upload, search, and extract data from contracts,
+  and automate contract generation and review workflows. Evisort was acquired by Workday
+  in 2024 and is now offered as Workday Contract Lifecycle Management, powered by Evisort.
+  Its REST API supports document upload and retrieval, field and metadata extraction,
+  search, workflow automation, and webhooks, authenticated with an Evisort API key
+  exchanged for a JWT bearer token.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Contract Lifecycle Management
+- CLM
+- Contract Intelligence
+- Document AI
+- Legal Tech
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: evisort:documents
+  name: Evisort Documents API
+  tags:
+  - Documents
+  - Contracts
+  - Upload
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://documents.developers.evisort.com/
+  baseURL: https://api.evisort.com/v1
+  properties:
+  - url: https://documents.developers.evisort.com/
+    type: Documentation
+  - url: openapi/evisort-openapi.yml
+    type: OpenAPI
+  description: Upload contracts and supporting files into Evisort, retrieve and download
+    document content (PDF, DOCX, with optional OCR), and manage documents stored in
+    a workspace.
+- aid: evisort:field-extraction
+  name: Evisort Field and Metadata Extraction API
+  tags:
+  - Fields
+  - Metadata
+  - Extraction
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://documents.developers.evisort.com/metadata
+  baseURL: https://api.evisort.com/v1
+  properties:
+  - url: https://documents.developers.evisort.com/metadata
+    type: Documentation
+  - url: openapi/evisort-openapi.yml
+    type: OpenAPI
+  description: Read and write the AI-extracted fields, clauses, and metadata associated
+    with a document, supporting import and export of structured contract data.
+- aid: evisort:workflows
+  name: Evisort Workflow API
+  tags:
+  - Workflows
+  - Tickets
+  - Automation
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://workflow.developers.evisort.com/
+  baseURL: https://api.evisort.com/v1
+  properties:
+  - url: https://workflow.developers.evisort.com/
+    type: Documentation
+  - url: openapi/evisort-openapi.yml
+    type: OpenAPI
+  description: Streamline and scale contract processes by initiating contract generation
+    and review, and managing workflow tickets and their associated documents.
+- aid: evisort:search
+  name: Evisort Search API
+  tags:
+  - Search
+  - Query
+  - Clauses
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://documents.developers.evisort.com/
+  baseURL: https://api.evisort.com/v1
+  properties:
+  - url: https://documents.developers.evisort.com/
+    type: Documentation
+  - url: openapi/evisort-openapi.yml
+    type: OpenAPI
+  description: Query contracts across a workspace by type, category, field values,
+    clauses, and full-text terms, with pagination and optional unique field-value
+    aggregation.
+- aid: evisort:webhooks
+  name: Evisort Webhooks
+  tags:
+  - Webhooks
+  - Events
+  - Notifications
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.evisort.com/
+  baseURL: https://api.evisort.com/v1
+  properties:
+  - url: https://developers.evisort.com/
+    type: Documentation
+  - url: openapi/evisort-openapi.yml
+    type: OpenAPI
+  description: Subscribe to events occurring in an Evisort workspace so external systems
+    can react to document, field, and workflow changes in near real time.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/evisort
+- type: Website
+  url: https://www.evisort.com
+- type: Documentation
+  url: https://developers.evisort.com/
+- type: Plans
+  url: plans/evisort-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/evisort-rate-limits.yml
+- type: FinOps
+  url: finops/evisort-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
