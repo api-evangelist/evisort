@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/evisort-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: JWT bearer token obtained from POST /auth/token by presenting an Evisort API
+    key.
+  sources:
+  - openapi/evisort-openapi.yml

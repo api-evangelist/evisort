@@ -103,6 +103,10 @@ apis:
   description: Subscribe to events occurring in an Evisort workspace so external systems
     can react to document, field, and workflow changes in near real time.
 common:
+- type: DomainSecurity
+  url: security/evisort-domain-security.yml
+- type: Authentication
+  url: authentication/evisort-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/evisort
 - type: Website
