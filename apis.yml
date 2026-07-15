@@ -103,6 +103,8 @@ apis:
   description: Subscribe to events occurring in an Evisort workspace so external systems
     can react to document, field, and workflow changes in near real time.
 common:
+- type: AgenticAccess
+  url: agentic-access/evisort-agentic-access.yml
 - type: DomainSecurity
   url: security/evisort-domain-security.yml
 - type: Authentication
