@@ -1,0 +1,100 @@
+openapi: 3.0.1
+info:
+  title: Evisort Authentication Search API
+  description: Partial, externally-reconstructed OpenAPI description of the Evisort REST API (Evisort is now Workday Contract Lifecycle Management, powered by Evisort). The full, authoritative reference lives behind Evisort's developer portals (developers.evisort.com, documents.developers.evisort.com, workflow.developers.evisort.com, admin.developers.evisort.com), which require an authenticated account and are not publicly crawlable. The base URL, the API-key to JWT authentication flow, and the endpoints described here were confirmed from publicly available integration and developer documentation. Endpoints whose exact request and response schemas are not publicly documented are described accurately rather than fabricated.
+  version: '1.0'
+  contact:
+    name: Evisort Developer Support
+    url: https://developers.evisort.com/
+  termsOfService: https://www.evisort.com/legal
+servers:
+- url: https://api.evisort.com/v1
+  description: Evisort production REST API
+security:
+- bearerAuth: []
+tags:
+- name: Search
+  description: Query documents across a workspace.
+paths:
+  /search:
+    post:
+      operationId: searchDocuments
+      tags:
+      - Search
+      summary: Search documents in a workspace
+      description: Searches contracts and documents in the workspace by type, category, field filters, clauses, and free-text terms. Results are paginated and can optionally include field-to-document mapping and unique field values.
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+      - name: includeMapping
+        in: query
+        schema:
+          type: boolean
+          default: false
+      - name: returnUniqueFieldValues
+        in: query
+        schema:
+          type: boolean
+          default: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchQuery'
+      responses:
+        '200':
+          description: A paginated list of matching documents with metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResults'
+components:
+  schemas:
+    FieldSet:
+      type: object
+      description: A collection of extracted fields and metadata keyed by field name. Field definitions are workspace-specific.
+      additionalProperties: true
+    Document:
+      type: object
+      properties:
+        evisortId:
+          type: string
+          description: Unique Evisort document identifier.
+        name:
+          type: string
+        fields:
+          $ref: '#/components/schemas/FieldSet'
+    SearchResults:
+      type: object
+      properties:
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        total:
+          type: integer
+    SearchQuery:
+      type: object
+      description: Search query object. Supports document type, category, field filters, and free-text search terms. The full filter grammar is documented in Evisort's authenticated developer portal.
+      properties:
+        query:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT bearer token obtained from POST /auth/token by presenting an Evisort API key.

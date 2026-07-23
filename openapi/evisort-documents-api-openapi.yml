@@ -1,0 +1,96 @@
+openapi: 3.0.1
+info:
+  title: Evisort Authentication Documents API
+  description: Partial, externally-reconstructed OpenAPI description of the Evisort REST API (Evisort is now Workday Contract Lifecycle Management, powered by Evisort). The full, authoritative reference lives behind Evisort's developer portals (developers.evisort.com, documents.developers.evisort.com, workflow.developers.evisort.com, admin.developers.evisort.com), which require an authenticated account and are not publicly crawlable. The base URL, the API-key to JWT authentication flow, and the endpoints described here were confirmed from publicly available integration and developer documentation. Endpoints whose exact request and response schemas are not publicly documented are described accurately rather than fabricated.
+  version: '1.0'
+  contact:
+    name: Evisort Developer Support
+    url: https://developers.evisort.com/
+  termsOfService: https://www.evisort.com/legal
+servers:
+- url: https://api.evisort.com/v1
+  description: Evisort production REST API
+security:
+- bearerAuth: []
+tags:
+- name: Documents
+  description: Upload, retrieve, and download contract documents.
+paths:
+  /documents/{evisortId}/content:
+    get:
+      operationId: getDocumentContent
+      tags:
+      - Documents
+      summary: Download document content
+      description: Downloads the file content of a document identified by its Evisort document ID, optionally as OCR'd text and in a requested file format (e.g. PDF or DOCX).
+      parameters:
+      - name: evisortId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: ocr
+        in: query
+        schema:
+          type: boolean
+      - name: type
+        in: query
+        schema:
+          type: string
+          enum:
+          - pdf
+          - docx
+      responses:
+        '200':
+          description: The document file content.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  /documents:
+    post:
+      operationId: uploadDocument
+      tags:
+      - Documents
+      summary: Upload a document
+      description: Uploads a contract or supporting file into Evisort for AI processing, field extraction, and search indexing. The exact multipart request schema is documented in Evisort's authenticated developer portal and is not reproduced in full here to avoid misrepresentation.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Document accepted for processing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+components:
+  schemas:
+    FieldSet:
+      type: object
+      description: A collection of extracted fields and metadata keyed by field name. Field definitions are workspace-specific.
+      additionalProperties: true
+    Document:
+      type: object
+      properties:
+        evisortId:
+          type: string
+          description: Unique Evisort document identifier.
+        name:
+          type: string
+        fields:
+          $ref: '#/components/schemas/FieldSet'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT bearer token obtained from POST /auth/token by presenting an Evisort API key.

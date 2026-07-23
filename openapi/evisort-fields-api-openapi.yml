@@ -1,0 +1,50 @@
+openapi: 3.0.1
+info:
+  title: Evisort Authentication Fields API
+  description: Partial, externally-reconstructed OpenAPI description of the Evisort REST API (Evisort is now Workday Contract Lifecycle Management, powered by Evisort). The full, authoritative reference lives behind Evisort's developer portals (developers.evisort.com, documents.developers.evisort.com, workflow.developers.evisort.com, admin.developers.evisort.com), which require an authenticated account and are not publicly crawlable. The base URL, the API-key to JWT authentication flow, and the endpoints described here were confirmed from publicly available integration and developer documentation. Endpoints whose exact request and response schemas are not publicly documented are described accurately rather than fabricated.
+  version: '1.0'
+  contact:
+    name: Evisort Developer Support
+    url: https://developers.evisort.com/
+  termsOfService: https://www.evisort.com/legal
+servers:
+- url: https://api.evisort.com/v1
+  description: Evisort production REST API
+security:
+- bearerAuth: []
+tags:
+- name: Fields
+  description: Read and write AI-extracted fields, clauses, and metadata.
+paths:
+  /documents/{evisortId}/fields:
+    get:
+      operationId: getDocumentFields
+      tags:
+      - Fields
+      summary: Get extracted fields and metadata for a document
+      description: Returns the AI-extracted fields, clauses, and metadata associated with a document. The precise field schema is defined per workspace and documented in Evisort's authenticated developer portal.
+      parameters:
+      - name: evisortId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The document's extracted fields and metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FieldSet'
+components:
+  schemas:
+    FieldSet:
+      type: object
+      description: A collection of extracted fields and metadata keyed by field name. Field definitions are workspace-specific.
+      additionalProperties: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT bearer token obtained from POST /auth/token by presenting an Evisort API key.
