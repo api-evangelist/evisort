@@ -9,7 +9,20 @@ description: Evisort is an AI-powered contract lifecycle management (CLM) and co
   Its REST API supports document upload and retrieval, field and metadata extraction,
   search, workflow automation, and webhooks, authenticated with an Evisort API key
   exchanged for a JWT bearer token.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: true
+  try_now: true
+  public: false
+  label: Enterprise (free trial) · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/evisort.png
 tags:
 - Contract Lifecycle Management
 - CLM
@@ -20,88 +33,78 @@ created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.19'
 apis:
-- aid: evisort:documents
+- aid: evisort:evisort-authentication-api
+  name: Evisort Authentication API
+  description: Exchange an Evisort API key for a short-lived JWT bearer token.
+  humanURL: https://documents.developers.evisort.com/
+  baseURL: https://api.evisort.com/v1
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/evisort-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://documents.developers.evisort.com/
+  - type: Documentation
+    url: https://documents.developers.evisort.com/metadata
+  - type: Documentation
+    url: https://workflow.developers.evisort.com/
+  - type: Documentation
+    url: https://developers.evisort.com/
+- aid: evisort:evisort-documents-api
   name: Evisort Documents API
+  description: Upload, retrieve, and download contract documents.
+  humanURL: https://documents.developers.evisort.com/
+  baseURL: https://api.evisort.com/v1
   tags:
   - Documents
-  - Contracts
-  - Upload
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/evisort-documents-api-openapi.yml
+  - type: Documentation
+    url: https://documents.developers.evisort.com/
+  - type: Documentation
+    url: https://documents.developers.evisort.com/metadata
+  - type: Documentation
+    url: https://workflow.developers.evisort.com/
+  - type: Documentation
+    url: https://developers.evisort.com/
+- aid: evisort:evisort-fields-api
+  name: Evisort Fields API
+  description: Read and write AI-extracted fields, clauses, and metadata.
   humanURL: https://documents.developers.evisort.com/
   baseURL: https://api.evisort.com/v1
-  properties:
-  - url: https://documents.developers.evisort.com/
-    type: Documentation
-  - url: openapi/evisort-openapi.yml
-    type: OpenAPI
-  description: Upload contracts and supporting files into Evisort, retrieve and download
-    document content (PDF, DOCX, with optional OCR), and manage documents stored in
-    a workspace.
-- aid: evisort:field-extraction
-  name: Evisort Field and Metadata Extraction API
   tags:
   - Fields
-  - Metadata
-  - Extraction
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://documents.developers.evisort.com/metadata
-  baseURL: https://api.evisort.com/v1
   properties:
-  - url: https://documents.developers.evisort.com/metadata
-    type: Documentation
-  - url: openapi/evisort-openapi.yml
-    type: OpenAPI
-  description: Read and write the AI-extracted fields, clauses, and metadata associated
-    with a document, supporting import and export of structured contract data.
-- aid: evisort:workflows
-  name: Evisort Workflow API
-  tags:
-  - Workflows
-  - Tickets
-  - Automation
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://workflow.developers.evisort.com/
-  baseURL: https://api.evisort.com/v1
-  properties:
-  - url: https://workflow.developers.evisort.com/
-    type: Documentation
-  - url: openapi/evisort-openapi.yml
-    type: OpenAPI
-  description: Streamline and scale contract processes by initiating contract generation
-    and review, and managing workflow tickets and their associated documents.
-- aid: evisort:search
+  - type: OpenAPI
+    url: openapi/evisort-fields-api-openapi.yml
+  - type: Documentation
+    url: https://documents.developers.evisort.com/
+  - type: Documentation
+    url: https://documents.developers.evisort.com/metadata
+  - type: Documentation
+    url: https://workflow.developers.evisort.com/
+  - type: Documentation
+    url: https://developers.evisort.com/
+- aid: evisort:evisort-search-api
   name: Evisort Search API
-  tags:
-  - Search
-  - Query
-  - Clauses
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  description: Query documents across a workspace.
   humanURL: https://documents.developers.evisort.com/
   baseURL: https://api.evisort.com/v1
-  properties:
-  - url: https://documents.developers.evisort.com/
-    type: Documentation
-  - url: openapi/evisort-openapi.yml
-    type: OpenAPI
-  description: Query contracts across a workspace by type, category, field values,
-    clauses, and full-text terms, with pagination and optional unique field-value
-    aggregation.
-- aid: evisort:webhooks
-  name: Evisort Webhooks
   tags:
-  - Webhooks
-  - Events
-  - Notifications
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.evisort.com/
-  baseURL: https://api.evisort.com/v1
+  - Search
   properties:
-  - url: https://developers.evisort.com/
-    type: Documentation
-  - url: openapi/evisort-openapi.yml
-    type: OpenAPI
-  description: Subscribe to events occurring in an Evisort workspace so external systems
-    can react to document, field, and workflow changes in near real time.
+  - type: OpenAPI
+    url: openapi/evisort-search-api-openapi.yml
+  - type: Documentation
+    url: https://documents.developers.evisort.com/
+  - type: Documentation
+    url: https://documents.developers.evisort.com/metadata
+  - type: Documentation
+    url: https://workflow.developers.evisort.com/
+  - type: Documentation
+    url: https://developers.evisort.com/
 common:
 - type: AgenticAccess
   url: agentic-access/evisort-agentic-access.yml
