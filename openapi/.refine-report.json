@@ -1,0 +1,20 @@
+{
+  "provider": "evisort",
+  "sources": [
+    "evisort-authentication-api-openapi.yml",
+    "evisort-documents-api-openapi.yml",
+    "evisort-fields-api-openapi.yml",
+    "evisort-search-api-openapi.yml"
+  ],
+  "outputs": [
+    "evisort-authentication-api-openapi.yml",
+    "evisort-documents-api-openapi.yml",
+    "evisort-fields-api-openapi.yml",
+    "evisort-search-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
