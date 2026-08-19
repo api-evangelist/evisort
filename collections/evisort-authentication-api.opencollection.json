@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Evisort Authentication API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate a JWT token from an Evisort API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.evisort.com/v1/auth/token",
+            "headers": [
+              {
+                "name": "EVISORT-API-KEY",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Exchanges an Evisort API key (created in the Evisort UI under the admin console / API management) for a short-lived JWT bearer token. The returned token is supplied as `Authorization: Bearer {token}` on all subsequent requests."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

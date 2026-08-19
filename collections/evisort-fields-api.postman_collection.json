@@ -1,0 +1,139 @@
+{
+  "item": [
+    {
+      "id": "03e4a387-081e-48a0-a5ee-0deaea08276a",
+      "name": "Fields",
+      "description": {
+        "content": "Read and write AI-extracted fields, clauses, and metadata.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d5540445-55b6-4aba-a549-12cd8ceedd5a",
+          "name": "Get extracted fields and metadata for a document",
+          "request": {
+            "name": "Get extracted fields and metadata for a document",
+            "description": {
+              "content": "Returns the AI-extracted fields, clauses, and metadata associated with a document. The precise field schema is defined per workspace and documented in Evisort's authenticated developer portal.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documents",
+                ":evisortId",
+                "fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "evisortId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "73d9aaf3-897a-4770-b0a4-85d93d85ad42",
+              "name": "The document's extracted fields and metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    ":evisortId",
+                    "fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "evisortId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": false,\n  \"key_1\": 64,\n  \"key_2\": 9551\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.evisort.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "55736d61-fe00-411d-ac7a-578f83ffbf14",
+    "name": "Evisort Authentication Fields API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Partial, externally-reconstructed OpenAPI description of the Evisort REST API (Evisort is now Workday Contract Lifecycle Management, powered by Evisort). The full, authoritative reference lives behind Evisort's developer portals (developers.evisort.com, documents.developers.evisort.com, workflow.developers.evisort.com, admin.developers.evisort.com), which require an authenticated account and are not publicly crawlable. The base URL, the API-key to JWT authentication flow, and the endpoints described here were confirmed from publicly available integration and developer documentation. Endpoints whose exact request and response schemas are not publicly documented are described accurately rather than fabricated.\n\nContact Support:\n Name: Evisort Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

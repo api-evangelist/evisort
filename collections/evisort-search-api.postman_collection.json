@@ -1,0 +1,178 @@
+{
+  "item": [
+    {
+      "id": "65098bae-edb9-4c48-8481-68316f1e6eae",
+      "name": "Search",
+      "description": {
+        "content": "Query documents across a workspace.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "feaee0ff-9b61-428f-b0f0-7aa2b3d455d0",
+          "name": "Search documents in a workspace",
+          "request": {
+            "name": "Search documents in a workspace",
+            "description": {
+              "content": "Searches contracts and documents in the workspace by type, category, field filters, clauses, and free-text terms. Results are paginated and can optionally include field-to-document mapping and unique field values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeMapping",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "returnUniqueFieldValues",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": {\n    \"key_0\": 8931\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9a64a68f-7f14-4018-9c06-929e8a53d3b1",
+              "name": "A paginated list of matching documents with metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "includeMapping",
+                      "value": "false"
+                    },
+                    {
+                      "key": "returnUniqueFieldValues",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": {\n    \"key_0\": 4303.518057227008,\n    \"key_1\": 9397\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"documents\": [\n    {\n      \"evisortId\": \"string\",\n      \"name\": \"string\",\n      \"fields\": {\n        \"key_0\": 9722.265856377855,\n        \"key_1\": 2701.753248890615,\n        \"key_2\": \"string\"\n      }\n    },\n    {\n      \"evisortId\": \"string\",\n      \"name\": \"string\",\n      \"fields\": {\n        \"key_0\": 1583.3955914093356,\n        \"key_1\": 5545,\n        \"key_2\": false,\n        \"key_3\": \"string\",\n        \"key_4\": 4141\n      }\n    }\n  ],\n  \"page\": 8939,\n  \"pageSize\": 9434,\n  \"total\": 6558\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.evisort.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "00c3cce4-fd0e-470e-b38f-4f5f97db7654",
+    "name": "Evisort Authentication Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Partial, externally-reconstructed OpenAPI description of the Evisort REST API (Evisort is now Workday Contract Lifecycle Management, powered by Evisort). The full, authoritative reference lives behind Evisort's developer portals (developers.evisort.com, documents.developers.evisort.com, workflow.developers.evisort.com, admin.developers.evisort.com), which require an authenticated account and are not publicly crawlable. The base URL, the API-key to JWT authentication flow, and the endpoints described here were confirmed from publicly available integration and developer documentation. Endpoints whose exact request and response schemas are not publicly documented are described accurately rather than fabricated.\n\nContact Support:\n Name: Evisort Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

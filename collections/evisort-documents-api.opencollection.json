@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Evisort Authentication Documents API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download document content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.evisort.com/v1/documents/:evisortId/content",
+            "params": [
+              {
+                "name": "evisortId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ocr",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Downloads the file content of a document identified by its Evisort document ID, optionally as OCR'd text and in a requested file format (e.g. PDF or DOCX)."
+        },
+        {
+          "info": {
+            "name": "Upload a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.evisort.com/v1/documents",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads a contract or supporting file into Evisort for AI processing, field extraction, and search indexing. The exact multipart request schema is documented in Evisort's authenticated developer portal and is not reproduced in full here to avoid misrepresentation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

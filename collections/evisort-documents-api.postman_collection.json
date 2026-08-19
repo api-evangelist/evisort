@@ -1,0 +1,264 @@
+{
+  "item": [
+    {
+      "id": "ebf9a808-bbd9-47fc-b1e2-e1b4cf9dfb63",
+      "name": "Documents",
+      "description": {
+        "content": "Upload, retrieve, and download contract documents.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "539f4062-b0b0-4e73-9c6f-e1dd69f80c20",
+          "name": "Download document content",
+          "request": {
+            "name": "Download document content",
+            "description": {
+              "content": "Downloads the file content of a document identified by its Evisort document ID, optionally as OCR'd text and in a requested file format (e.g. PDF or DOCX).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documents",
+                ":evisortId",
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ocr",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "evisortId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8fc58f50-b807-4622-a6ea-4c1ceb1f992e",
+              "name": "The document file content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    ":evisortId",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ocr",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "evisortId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "077626d4-39d5-4ae2-bcdc-b70317e15053",
+          "name": "Upload a document",
+          "request": {
+            "name": "Upload a document",
+            "description": {
+              "content": "Uploads a contract or supporting file into Evisort for AI processing, field extraction, and search indexing. The exact multipart request schema is documented in Evisort's authenticated developer portal and is not reproduced in full here to avoid misrepresentation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c70a28b3-2c88-4af0-986b-6b7ca5bf9757",
+              "name": "Document accepted for processing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"evisortId\": \"string\",\n  \"name\": \"string\",\n  \"fields\": {\n    \"key_0\": \"string\",\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.evisort.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7f5e9de0-db7a-4149-87e1-02db2dbfd82d",
+    "name": "Evisort Authentication Documents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Partial, externally-reconstructed OpenAPI description of the Evisort REST API (Evisort is now Workday Contract Lifecycle Management, powered by Evisort). The full, authoritative reference lives behind Evisort's developer portals (developers.evisort.com, documents.developers.evisort.com, workflow.developers.evisort.com, admin.developers.evisort.com), which require an authenticated account and are not publicly crawlable. The base URL, the API-key to JWT authentication flow, and the endpoints described here were confirmed from publicly available integration and developer documentation. Endpoints whose exact request and response schemas are not publicly documented are described accurately rather than fabricated.\n\nContact Support:\n Name: Evisort Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
