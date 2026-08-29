@@ -9,6 +9,18 @@ description: Evisort is an AI-powered contract lifecycle management (CLM) and co
   Its REST API supports document upload and retrieval, field and metadata extraction,
   search, workflow automation, and webhooks, authenticated with an Evisort API key
   exchanged for a JWT bearer token.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
