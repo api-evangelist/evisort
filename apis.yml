@@ -118,6 +118,11 @@ apis:
   - type: Documentation
     url: https://developers.evisort.com/
 common:
+- type: ParentCompany
+  url: https://apis.io/providers/workday/
+  name: Workday
+  x-relationship: acquired
+  x-evidence: "Evisort was acquired by Workday in 2024 and is now offered as Workday Contract Lifecycle Management, powered by Evisort."
 - type: AgenticAccess
   url: agentic-access/evisort-agentic-access.yml
 - type: DomainSecurity
