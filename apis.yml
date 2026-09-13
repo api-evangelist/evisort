@@ -38,6 +38,11 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/evisort.png
 tags:
 - Contract Lifecycle Management
+- Contract Intelligence
+- Document AI
+- Legal Tech
+tags_raw:
+- Contract Lifecycle Management
 - CLM
 - Contract Intelligence
 - Document AI
