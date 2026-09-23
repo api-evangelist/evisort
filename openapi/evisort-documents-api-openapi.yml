@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Evisort Authentication Documents API
-  description: Partial, externally-reconstructed OpenAPI description of the Evisort REST API (Evisort is now Workday Contract Lifecycle Management, powered by Evisort). The full, authoritative reference lives behind Evisort's developer portals (developers.evisort.com, documents.developers.evisort.com, workflow.developers.evisort.com, admin.developers.evisort.com), which require an authenticated account and are not publicly crawlable. The base URL, the API-key to JWT authentication flow, and the endpoints described here were confirmed from publicly available integration and developer documentation. Endpoints whose exact request and response schemas are not publicly documented are described accurately rather than fabricated.
+  title: Evisort Documents API
+  description: Partial, externally-reconstructed OpenAPI description of the Evisort REST API (Evisort is now Workday Contract Lifecycle Management, powered by Evisort).
   version: '1.0'
   contact:
     name: Evisort Developer Support
@@ -74,10 +74,6 @@ paths:
                 $ref: '#/components/schemas/Document'
 components:
   schemas:
-    FieldSet:
-      type: object
-      description: A collection of extracted fields and metadata keyed by field name. Field definitions are workspace-specific.
-      additionalProperties: true
     Document:
       type: object
       properties:
@@ -88,6 +84,10 @@ components:
           type: string
         fields:
           $ref: '#/components/schemas/FieldSet'
+    FieldSet:
+      type: object
+      description: A collection of extracted fields and metadata keyed by field name. Field definitions are workspace-specific.
+      additionalProperties: true
   securitySchemes:
     bearerAuth:
       type: http
