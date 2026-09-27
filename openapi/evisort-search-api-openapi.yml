@@ -58,23 +58,6 @@ paths:
                 $ref: '#/components/schemas/SearchResults'
 components:
   schemas:
-    SearchQuery:
-      type: object
-      description: Search query object. Supports document type, category, field filters, and free-text search terms. The full filter grammar is documented in Evisort's authenticated developer portal.
-      properties:
-        query:
-          type: object
-          additionalProperties: true
-    Document:
-      type: object
-      properties:
-        evisortId:
-          type: string
-          description: Unique Evisort document identifier.
-        name:
-          type: string
-        fields:
-          $ref: '#/components/schemas/FieldSet'
     SearchResults:
       type: object
       properties:
@@ -88,10 +71,27 @@ components:
           type: integer
         total:
           type: integer
+    Document:
+      type: object
+      properties:
+        evisortId:
+          type: string
+          description: Unique Evisort document identifier.
+        name:
+          type: string
+        fields:
+          $ref: '#/components/schemas/FieldSet'
     FieldSet:
       type: object
       description: A collection of extracted fields and metadata keyed by field name. Field definitions are workspace-specific.
       additionalProperties: true
+    SearchQuery:
+      type: object
+      description: Search query object. Supports document type, category, field filters, and free-text search terms. The full filter grammar is documented in Evisort's authenticated developer portal.
+      properties:
+        query:
+          type: object
+          additionalProperties: true
   securitySchemes:
     bearerAuth:
       type: http
