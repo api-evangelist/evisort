@@ -58,6 +58,10 @@ paths:
                 $ref: '#/components/schemas/SearchResults'
 components:
   schemas:
+    FieldSet:
+      type: object
+      description: A collection of extracted fields and metadata keyed by field name. Field definitions are workspace-specific.
+      additionalProperties: true
     SearchResults:
       type: object
       properties:
@@ -81,10 +85,6 @@ components:
           type: string
         fields:
           $ref: '#/components/schemas/FieldSet'
-    FieldSet:
-      type: object
-      description: A collection of extracted fields and metadata keyed by field name. Field definitions are workspace-specific.
-      additionalProperties: true
     SearchQuery:
       type: object
       description: Search query object. Supports document type, category, field filters, and free-text search terms. The full filter grammar is documented in Evisort's authenticated developer portal.

@@ -74,6 +74,10 @@ paths:
                 $ref: '#/components/schemas/Document'
 components:
   schemas:
+    FieldSet:
+      type: object
+      description: A collection of extracted fields and metadata keyed by field name. Field definitions are workspace-specific.
+      additionalProperties: true
     Document:
       type: object
       properties:
@@ -84,10 +88,6 @@ components:
           type: string
         fields:
           $ref: '#/components/schemas/FieldSet'
-    FieldSet:
-      type: object
-      description: A collection of extracted fields and metadata keyed by field name. Field definitions are workspace-specific.
-      additionalProperties: true
   securitySchemes:
     bearerAuth:
       type: http
