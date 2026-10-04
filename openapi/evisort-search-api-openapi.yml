@@ -58,10 +58,6 @@ paths:
                 $ref: '#/components/schemas/SearchResults'
 components:
   schemas:
-    FieldSet:
-      type: object
-      description: A collection of extracted fields and metadata keyed by field name. Field definitions are workspace-specific.
-      additionalProperties: true
     SearchResults:
       type: object
       properties:
@@ -75,6 +71,10 @@ components:
           type: integer
         total:
           type: integer
+    FieldSet:
+      type: object
+      description: A collection of extracted fields and metadata keyed by field name. Field definitions are workspace-specific.
+      additionalProperties: true
     Document:
       type: object
       properties:
