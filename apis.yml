@@ -2,6 +2,8 @@ aid: evisort
 url: https://raw.githubusercontent.com/api-evangelist/evisort/refs/heads/main/apis.yml
 name: Evisort
 kind: company
+x-status: acquired
+x-acquired-by: workday
 description: Evisort is an AI-powered contract lifecycle management (CLM) and contract
   intelligence platform that lets teams upload, search, and extract data from contracts,
   and automate contract generation and review workflows. Evisort was acquired by Workday
@@ -41,12 +43,14 @@ tags:
 - Contract Intelligence
 - Document AI
 - Legal Tech
+- Contract Management
 tags_raw:
 - Contract Lifecycle Management
 - CLM
 - Contract Intelligence
 - Document AI
 - Legal Tech
+- Contract Management
 created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.23'
@@ -124,6 +128,9 @@ apis:
   - type: Documentation
     url: https://developers.evisort.com/
 common:
+- type: CapabilityMap
+  url: capabilities/evisort-capability-edges.yml
+  name: Evisort Business Capability Map
 - type: ParentCompany
   url: https://apis.io/providers/workday/
   name: Workday
