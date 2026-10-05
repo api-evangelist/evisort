@@ -1,0 +1,34 @@
+slug: evisort
+provider: Evisort
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Documents
+  spec_file: evisort-documents-api-openapi.yml
+  capability_id: BC-150.10
+  capability_id_l1: BC-150
+  capability_name: Contract Management
+  confidence: 0.75
+  evidence: POST /documents uploadDocument 'Upload a document'; vendor is an 'AI-powered contract lifecycle
+    management (CLM) and contract intelligence platform'
+  reason: Document upload/retrieval in a CLM platform serves the contract repository, which realises Contract
+    Management; some ambiguity since the tag is generic document handling.
+- tag: Fields
+  spec_file: evisort-fields-api-openapi.yml
+  capability_id: BC-150.10
+  capability_id_l1: BC-150
+  capability_name: Contract Management
+  confidence: 0.7
+  evidence: GET /documents/{evisortId}/fields 'Get extracted fields and metadata for a document'
+  reason: Extraction of contract metadata/clause fields is core contract intelligence within contract
+    lifecycle management; evidence is thin but vendor context is explicitly CLM.
